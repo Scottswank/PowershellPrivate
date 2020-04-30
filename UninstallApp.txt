@@ -1,0 +1,16 @@
+# Uninstall a Windows program
+function uninstall($programName)
+{
+    $app = Get-WmiObject -Class Win32_Product -Filter ("Name = '" + $programName + "'")
+    if($app -ne $null)
+    {
+        $app.Uninstall()
+    }
+    else {
+        echo ("Could not find program '" + $programName + "'")
+    }
+}
+
+
+
+uninstall("notepad++")
